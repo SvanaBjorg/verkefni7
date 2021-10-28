@@ -103,10 +103,13 @@ function checkGame(player, computer) {
  */
 function round() {
     const player = prompt('Veldu blað, skæri eða stein');
+    const computer = Math.floor(Math.random() *3) +1;
+        if (checkGame(player, computer))    
         return player;
-    let computer = Math.floor(Math.random() *3) +1;
+    
+   
 
-    checkGame
+    
 
   // TODO útfæra
   // 1. Spyrja um hvað spilað, ef cancel, hætta (console.error)
@@ -164,12 +167,3 @@ function games() {
 // Hér getum við ekki skrifað test þar sem fallið les úr global state
 
 
-
-
-
-
-
-
-
-
-//
