@@ -48,7 +48,7 @@ function playAsText(play) {
             break
     }
     console.log(out); 
-    return out;
+    return(out);
   // TODO útfæra
   // Til að geta birt notendanum hvor vann
   // Tökum inn ehv af tölunum fyrir neðan (strengur eða tala) og skilum hvað talan táknar. t.d. 1 == skæri
@@ -66,7 +66,15 @@ function playAsText(play) {
  */
 function checkGame(player, computer) {
   let out = 0;
-    switch(player){
+
+    if (player === "2" && computer === "1") return 1;
+    if (player === "1" && computer === "3") return 1;
+    if (player === "3" && computer === "2") return 1;
+    if (player === computer) return 0;
+    else return -1;
+
+
+    /*switch(player){
         case 'Blað':
             if (computer === 3) out = 1;
             else if ( computer === 1) out = 0;
@@ -89,7 +97,7 @@ function checkGame(player, computer) {
                 out = -1;
                 break;
     }
-    return out;
+    return out;*/
 }
 //console.assert(checkGame('1', '2') === 1, 'Skæri vinnur blað');
 //console.assert(checkGame('2', '3') === 1, 'Blað vinnur stein');
@@ -103,13 +111,21 @@ function checkGame(player, computer) {
  */
 function round() {
     const player = prompt('Veldu blað, skæri eða stein');
-    const computer = Math.floor(Math.random() *3) +1;
-        if (checkGame(player, computer))    
-        return player;
-    
-   
-
-    
+    const computer = Math.floor(Math.random() *3) +1 .toString();
+    let leikur = checkGame(player, computer);
+        if (leikur === 1){
+            alert('Þú vannst');
+            wins++;
+        }
+        if (leikur === -1){
+            alert('Þú tapaðir');
+            losses++;
+        }
+        if (leikur === 0){
+            alert('Jafntefli')
+        }
+        leikirSpilaðir++;
+        return leikur;
 
   // TODO útfæra
   // 1. Spyrja um hvað spilað, ef cancel, hætta (console.error)
@@ -135,18 +151,6 @@ function play() {
         }
         for (let i = 0; i < bestOf; i++){
         const test = round();
-        console.log(test); 
-        }
-        if (checkGame = 1){
-            wins++;
-            leikirSpilaðir;
-        }
-        if (checkGame = -1){
-            losses++;
-            leikirSpilaðir;
-        }
-        if (checkGame = 0){
-            leikirSpilaðir;
         }
 
 }
@@ -162,8 +166,15 @@ function play() {
  * Birtir stöðu spilara.
  */
 function games() {
-  // TODO útfæra
+    /*let formulaWins = wins/leikirSpilaðir * 100;
+    let formulaLosses = losses/leikirSpilaðir * 100;
+    alert (leikirSpilaðir + ' Leikir spilaðir ' + formulaWins.toFixed(2) + '%' +' sigurhlutfall');
+    alert (leikirSpilaðir + ' Leikir spilaðir ' + formulaLosses.toFixed(2) + '%' +' taphlutfall');*/
+    console.log('Þú hefur spilað', leikirSpilaðir, 'leiki');
+    console.log('Þú hefur unnið', wins, ', eða ', wins/leikirSpilaðir*100, '% af heild')
+    console.log('Þú hefur tapað', losses, ', eða ', losses/leikirSpilaðir*100, '% af heild')
+  
 }
 // Hér getum við ekki skrifað test þar sem fallið les úr global state
 
-
+// const text = alert(`jibbí þú vannst ${play?(player)}` )
